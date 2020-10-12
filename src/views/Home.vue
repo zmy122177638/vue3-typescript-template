@@ -5,14 +5,18 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script>
 import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
-
-export default defineComponent({
-  name: 'Home',
+import api from '@/api'
+export default {
+  name: '',
   components: {
     HelloWorld,
   },
-})
+  setup() {
+    api.user.getUserInfo().then(() => {
+      console.log(4444)
+    })
+  },
+}
 </script>
