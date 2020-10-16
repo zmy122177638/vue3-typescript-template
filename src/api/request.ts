@@ -41,7 +41,7 @@ const pengdingRequestList: PendingRequest[] = []
 const RequestErrorCodeMap = new Map([
   [999, '网络请求超时'],
   [1000, '未知错误'],
-  [400044, '登录失效，重新登录'],
+  [40004, '登录失效，重新登录'],
 ])
 /** 默认配置 */
 let requestOptions: Options = {
@@ -67,15 +67,10 @@ function cancelPengdingRequest(requestConfig: AxiosRequestConfig) {
 }
 
 function handleRequestError(error: ResponseError) {
-  console.log()
   if (RequestErrorCodeMap.get(error.code) === '登录失效，重新登录') {
     // router.push({ name: 'Login', query: { redirect: router.currentRoute.path } })
   } else {
-    console.log({
-      message: RequestErrorCodeMap.get(error.code) || error.message || '服务器错误',
-      type: 'error',
-      duration: 3 * 1000,
-    })
+    alert(RequestErrorCodeMap.get(error.code) || error.message || '服务器错误')
   }
 }
 const service = axios.create({
@@ -141,11 +136,7 @@ service.interceptors.response.use(
     return response
   },
   error => {
-    console.log({
-      message: error.message,
-      type: 'error',
-      duration: 5 * 1000,
-    })
+    alert(error.message)
     return Promise.reject(error)
   },
 )

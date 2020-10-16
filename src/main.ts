@@ -5,14 +5,18 @@ import globalConfig from './globalCofing'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
+import '@/router/permission'
 
 /** 初始化axios实例，设置公共参数、请求头、权限等等 */
 initHttp({
   publicConfig: () => ({
-    params: { orgId: globalConfig.orgId },
+    params: {
+      orgId: globalConfig.orgId,
+    },
     baseURL: '',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
+      Auth: store.state.user?.token,
     },
   }),
 })

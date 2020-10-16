@@ -7,16 +7,9 @@
 
 <script>
 import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
-import api from '@/api'
 export default {
-  name: '',
   components: {
     HelloWorld,
-  },
-  setup() {
-    api.user.getUserInfo().then(() => {
-      console.log(4444)
-    })
   },
 }
 </script>

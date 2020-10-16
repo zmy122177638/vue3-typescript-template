@@ -1,10 +1,24 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link>
+    <template v-if="!isLogin"> | </template>
+    <router-link to="/login" v-if="!isLogin">Login</router-link>
   </div>
   <router-view />
 </template>
+
+<script>
+import { computed } from 'vue'
+import UserModule from './store/modules/user'
+export default {
+  setup() {
+    const isLogin = computed(() => UserModule.state.isLogin)
+    return {
+      isLogin,
+    }
+  },
+}
+</script>
 
 <style lang="scss">
 #app {
